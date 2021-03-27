@@ -17,6 +17,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -26,7 +36,8 @@
       "browser": true,
       "node": true,
       "es6": true
-    }
+    },
+    "parser": "babel-eslint"
   },
   "browserslist": {
     "production": [
@@ -39,5 +50,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
   }
 }
