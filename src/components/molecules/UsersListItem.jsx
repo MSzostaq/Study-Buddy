@@ -18,13 +18,54 @@ const Wrapper = styled.li`
   }
 `;
 
-const UsersListItem = ({ userData: { attendance = "0%", average, name } }) => (
+const StyledInfo = styled.div`
+  padding: 25px 20px;
+
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.darkGrey};
+  }
+
+  p:first-child {
+    display: flex;
+    align-items: center;
+    font-size: ${({ theme }) => theme.fontSize.l};
+    font-weight: bold;
+  }
+
+  p:last-child {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
+`;
+
+const StyledAverage = styled.div`
+  background: ${({ theme, value }) => {
+    if (value > 4) return theme.colors.succes;
+    if (value > 3) return theme.colors.warning;
+    if (value > 2) return theme.colors.error;
+    return theme.colors.grey;
+  }};
+  border-radius: 50px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+`;
+
+const UsersListItem = ({
+  index,
+  userData: { attendance = "0%", average, name },
+}) => (
   <Wrapper>
-    <div>{average}</div>
-    <div>
+    <StyledAverage value={average}>{average}</StyledAverage>
+    <StyledInfo>
       <p>{name}</p>
-      <p>{attendance}</p>
-    </div>
+      <p>attendance: {attendance}</p>
+    </StyledInfo>
     <Button />
   </Wrapper>
 );
