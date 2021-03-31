@@ -59,16 +59,22 @@ const StyledAverage = styled.div`
 const UsersListItem = ({
   index,
   userData: { attendance = "0%", average, name },
-}) => (
-  <Wrapper>
-    <StyledAverage value={average}>{average}</StyledAverage>
-    <StyledInfo>
-      <p>{name}</p>
-      <p>attendance: {attendance}</p>
-    </StyledInfo>
-    <Button />
-  </Wrapper>
-);
+}) => {
+  const showIndex = (index) => alert(`This is student #${index + 1}`);
+
+  return (
+    <Wrapper>
+      <StyledAverage value={average}>{average}</StyledAverage>
+      <StyledInfo>
+        <p>
+          {name}
+          <Button onClick={() => showIndex(index)} />
+        </p>
+        <p>attendance: {attendance}</p>
+      </StyledInfo>
+    </Wrapper>
+  );
+};
 
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
