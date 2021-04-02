@@ -11,7 +11,7 @@ const Wrapper = styled.li`
   &:not(:last-child)::after {
     background-color: lightgrey;
     bottom: 0;
-    content: ''
+    content: "";
     position: absolute;
     width: 100%;
     height: 1px;
