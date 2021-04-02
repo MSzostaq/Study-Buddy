@@ -57,24 +57,20 @@ const StyledAverage = styled.div`
 `;
 
 const UsersListItem = ({
-  index,
+  deleteUser,
   userData: { attendance = "0%", average, name },
-}) => {
-  const showIndex = (index) => alert(`This is student #${index + 1}`);
-
-  return (
-    <Wrapper>
-      <StyledAverage value={average}>{average}</StyledAverage>
-      <StyledInfo>
-        <p>
-          {name}
-          <Button onClick={() => showIndex(index)} />
-        </p>
-        <p>attendance: {attendance}</p>
-      </StyledInfo>
-    </Wrapper>
-  );
-};
+}) => (
+  <Wrapper>
+    <StyledAverage value={average}>{average}</StyledAverage>
+    <StyledInfo>
+      <p>
+        {name}
+        <Button onClick={() => deleteUser(name)} />
+      </p>
+      <p>attendance: {attendance}</p>
+    </StyledInfo>
+  </Wrapper>
+);
 
 UsersListItem.propTypes = {
   userData: PropTypes.shape({
