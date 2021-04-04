@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Button from "components/atoms/Button";
+import DeleteButton from "components/atoms/DeleteButton";
 
 const Wrapper = styled.li`
   align-items: center;
@@ -65,7 +65,7 @@ const UsersListItem = ({
     <StyledInfo>
       <p>
         {name}
-        <Button onClick={() => deleteUser(name)} />
+        <DeleteButton onClick={() => deleteUser(name)} />
       </p>
       <p>attendance: {attendance}</p>
     </StyledInfo>
