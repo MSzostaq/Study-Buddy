@@ -1,6 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { UserShape } from "types";
 import UsersListItem from "components/molecules/UsersListItem";
+import Title from "components/atoms/Title";
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -10,11 +13,6 @@ const Wrapper = styled.div`
   padding: 40px 30px;
   width: 100%;
   max-width: 500px;
-`;
-
-const StyledTitle = styled.h1`
-  color: ${({ theme }) => theme.colors.darkGrey};
-  font-size: ${({ theme }) => theme.fontSize.xl};
 `;
 
 const StyledList = styled.ul`
@@ -27,7 +25,7 @@ const UsersList = ({ users, deleteUser }) => {
   return (
     <>
       <Wrapper>
-        <StyledTitle>Students list:</StyledTitle>
+        <Title>Students list:</Title>
         <StyledList>
           {users.map((userData) => (
             <UsersListItem
@@ -40,6 +38,11 @@ const UsersList = ({ users, deleteUser }) => {
       </Wrapper>
     </>
   );
+};
+
+UsersList.propTypes = {
+  deleteUser: PropTypes.func,
+  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
 };
 
 export default UsersList;
