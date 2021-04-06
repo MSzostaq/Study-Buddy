@@ -32,7 +32,9 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:prettier/recommended",
+      "prettier"
     ],
     "env": {
       "browser": true,
