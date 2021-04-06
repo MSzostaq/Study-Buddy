@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 32px 0;
   width: 100%;
   height: 100%;
@@ -29,12 +28,35 @@ const Logo = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
+const activeClassName = "active-link";
+const StyledLink = styled(NavLink).attrs({
+  activeClassName,
+})`
   color: ${({ theme }) => theme.colors.darkGrey};
   font-weight: bold;
   margin: 16px 20px 16px auto;
+  position: relative;
   text-align: right;
   text-decoration: none;
+
+  &.${activeClassName} {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::after {
+    background-color: ${({ theme }) => theme.colors.darkPurple};
+    content: "";
+    opacity: 0;
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transition: opacity 0.3s ease-in-out;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 3px;
+  }
 `;
 
 const Navigation = () => {
@@ -47,10 +69,10 @@ const Navigation = () => {
           Buddy
         </h1>
       </Logo>
-      <StyledLink to="/">Dashboard</StyledLink>
+      <StyledLink exact to="/">
+        Dashboard
+      </StyledLink>
       <StyledLink to="/add-user">Add user</StyledLink>
-      <StyledLink to="/">Settings</StyledLink>
-      <StyledLink to="/">Logout</StyledLink>
     </Wrapper>
   );
 };

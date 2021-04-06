@@ -9,12 +9,11 @@ import AddUser from "views/AddUser";
 import Dashboard from "views/Dashboard";
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.lightGrey};
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const initialFromState = {
@@ -40,9 +39,9 @@ const Root = () => {
   const handleAddUser = (e) => {
     e.preventDefault();
     const newUser = {
+      name: formValues.name,
       attendance: formValues.attendance,
       average: formValues.average,
-      name: formValues.name,
     };
 
     setUsers({ newUser, ...users });
