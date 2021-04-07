@@ -11,17 +11,13 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 
-const UsersList = ({ users, deleteUser }) => {
+const UsersList = ({ users }) => {
   return (
     <>
       <Title>Students list:</Title>
       <StyledList>
         {users.map((userData) => (
-          <UsersListItem
-            deleteUser={deleteUser}
-            key={userData.name}
-            userData={userData}
-          />
+          <UsersListItem key={userData.name} userData={userData} />
         ))}
       </StyledList>
     </>
