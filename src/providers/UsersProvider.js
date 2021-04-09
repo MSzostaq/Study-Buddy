@@ -21,7 +21,7 @@ const UsersProvider = ({ children }) => {
       attendance: values.attendance,
       average: values.average,
     };
-    setUsers({ newUser, ...users });
+    setUsers([newUser, ...users]);
   };
   return (
     <UsersContext.Provider

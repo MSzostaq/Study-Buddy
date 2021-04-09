@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
-import { UsersContext } from "providers/UsersProvider";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { UsersContext } from "providers/UsersProvider";
+import { UserShape } from "types";
 import DeleteButton from "components/atoms/DeleteButton";
 
 const Wrapper = styled.li`
@@ -71,6 +73,10 @@ const UsersListItem = ({ userData: { attendance = "0%", average, name } }) => {
       </StyledInfo>
     </Wrapper>
   );
+};
+
+UsersListItem.propTypes = {
+  userData: PropTypes.shape(UserShape),
 };
 
 export default UsersListItem;
