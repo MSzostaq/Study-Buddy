@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import { useForm } from "hooks/useForm";
 import FormField from "components/molecules/FormField";
 import { UsersContext } from "providers/UsersProvider";
 import Button from "components/atoms/Button";
@@ -12,17 +13,23 @@ const initialFromState = {
 };
 
 const AddUser = () => {
-  const [formValues, setFormValues] = useState(initialFromState);
   const { handleAddUser } = useContext(UsersContext);
-
-  const handleInputChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
+  const {
+    handleClearForm,
+    formValues,
+    handleInputChange,
+    handleThrowError,
+    handleToggleConsent,
+  } = useForm(initialFromState);
 
   const handleSubmitUser = (e) => {
     e.preventDefault();
-    handleAddUser(formValues);
-    setFormValues(initialFromState);
+    if (formValues.consent) {
+      handleAddUser(formValues);
+      handleClearForm(initialFromState);
+    } else {
+      handleThrowError("You need to give consent");
+    }
   };
 
   return (
@@ -49,7 +56,16 @@ const AddUser = () => {
         value={formValues.average}
         onChange={handleInputChange}
       />
+      <FormField
+        label="Consent"
+        id="consent"
+        name="consent"
+        type="checkbox"
+        value={formValues.average}
+        onChange={handleToggleConsent}
+      />
       <Button type="submit">Add</Button>
+      {formValues.error ? <p>{formValues.error}</p> : null}
     </ViewWrapper>
   );
 };
