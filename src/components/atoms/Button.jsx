@@ -5,10 +5,11 @@ const Button = styled.button`
   border: none;
   border-radius: 24px;
   color: ${({ theme }) => theme.colors.darkGrey};
-  font-size: ${({ theme }) => theme.fontSize.s};
+  font-size: ${({ isBig, theme: { fontSize } }) =>
+    isBig ? fontSize.m : fontSize.s};
   font-weight: bold;
   margin: 16px 0;
-  padding: 8px 24px;
+  padding: ${({ isBig }) => (isBig ? "10px 36px" : "8px 24px")};
 `;
 
 export default Button;
