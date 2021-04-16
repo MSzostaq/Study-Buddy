@@ -7,12 +7,18 @@ const StyledButton = styled.button`
   border: none;
   border-radius: 50px;
   color: white;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 12px;
   width: 24px;
   height: 24px;
+
+  &:focus {
+    box-shadow: -2px 4px 1-px rgba(115, 124, 142, 0.3);
+    outline: none;
+  }
 
   svg {
     width: 100%;
