@@ -11,7 +11,7 @@ const Wrapper = styled.li`
   position: relative;
 
   &:not(:last-child)::after {
-    background-color: lightgrey;
+    background-color: ${({ theme }) => theme.colors.lightGrey};
     bottom: 0;
     content: "";
     position: absolute;
