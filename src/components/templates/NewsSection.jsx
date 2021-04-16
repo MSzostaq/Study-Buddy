@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   grid-row: 1 / 3;
   grid-column: 3 / 3;
   overflow-y: scroll;
-  padding: 50px;
+  padding: 0 48px;
 `;
 
 const NewsSectionHeader = styled.h3`
