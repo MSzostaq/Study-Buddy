@@ -11,7 +11,7 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users = [] }) => {
   return (
     <>
       <Title>Students list:</Title>
