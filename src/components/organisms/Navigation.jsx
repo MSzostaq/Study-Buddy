@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 const Wrapper = styled.nav`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
   display: flex;
+  justify-content: flex-start;
   flex-direction: column;
   grid-row: 1 / 3;
   grid-column: 1 / 1;
@@ -74,7 +75,6 @@ const Navigation = () => {
       <StyledLink exact to="/dashboard">
         Dashboard
       </StyledLink>
-      <StyledLink to="/add-user">Add user</StyledLink>
     </Wrapper>
   );
 };

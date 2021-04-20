@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { UsersContext } from "providers/UsersProvider";
 import { UserShape } from "types";
 import DeleteButton from "components/atoms/DeleteButton";
 
@@ -59,15 +58,13 @@ const StyledAverage = styled.div`
 `;
 
 const UsersListItem = ({ userData: { attendance = "0%", average, name } }) => {
-  const { deleteUser } = useContext(UsersContext);
-
   return (
     <Wrapper>
       <StyledAverage value={average}>{average}</StyledAverage>
       <StyledInfo>
         <p>
           {name}
-          <DeleteButton onClick={() => deleteUser(name)} />
+          <DeleteButton />
         </p>
         <p>attendance: {attendance}</p>
       </StyledInfo>

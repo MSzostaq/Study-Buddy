@@ -9,7 +9,6 @@ import {
 import { GlobalStyle } from "assets/styles/globalStyle";
 import { theme } from "assets/styles/theme";
 import MainTemplate from "components/templates/MainTemplate";
-import AddUser from "views/AddUser";
 import Dashboard from "views/Dashboard";
 
 const Wrapper = styled.div`
@@ -30,9 +29,6 @@ const Root = () => {
             <Switch>
               <Route exact path="/">
                 <Redirect to="/dashboard" />
-              </Route>
-              <Route path="/add-user">
-                <AddUser />
               </Route>
               <Route path="/dashboard/:id?">
                 <Dashboard />
