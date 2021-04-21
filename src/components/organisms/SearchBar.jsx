@@ -100,7 +100,7 @@ const SearchBar = () => {
         />
         {searchPhrase && matchingStudents.length ? (
           <SearchResults>
-            {matchingStudents.map((students) => (
+            {matchingStudents.map((student) => (
               <li key={student.id}>{student.map}</li>
             ))}
           </SearchResults>

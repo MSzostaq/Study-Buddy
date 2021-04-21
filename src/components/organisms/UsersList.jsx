@@ -13,7 +13,7 @@ const StyledList = styled.ul`
 
 const UsersList = () => {
   const { id } = useParams();
-  const { students } = useStudents({ group: id });
+  const { students } = useStudents({ groupId: id });
 
   return (
     <>
