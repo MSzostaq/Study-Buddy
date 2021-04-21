@@ -8,7 +8,7 @@ const Input = styled.input`
   padding: 4px 8px;
 
   &:focus {
-    box-shadow: -2px 4px 1-px rgba(115, 124, 142, 0.3);
+    box-shadow: 2px 4px 1px rgba(115, 124, 142, 0.3);
     outline: none;
   }
 `;
