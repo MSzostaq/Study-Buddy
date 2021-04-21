@@ -5,8 +5,8 @@ import { UserShape } from "types";
 import DeleteButton from "components/atoms/DeleteButton";
 
 const Wrapper = styled.li`
-  align-items: center;
   display: flex;
+  align-items: center;
   position: relative;
 
   &:not(:last-child)::after {
@@ -20,7 +20,7 @@ const Wrapper = styled.li`
 `;
 
 const StyledInfo = styled.div`
-  padding: 25px 20px;
+  padding: 12px 8px;
 
   p {
     margin: 0;
