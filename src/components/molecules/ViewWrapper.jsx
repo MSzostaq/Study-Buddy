@@ -7,7 +7,7 @@ const ViewWrapper = styled.div`
   margin: 24px;
   padding: 42px 48px;
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
 `;
 
 export default ViewWrapper;
