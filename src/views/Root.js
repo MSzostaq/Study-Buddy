@@ -28,9 +28,9 @@ const Root = () => {
           <Wrapper>
             <Switch>
               <Route exact path="/">
-                <Redirect to="/dashboard" />
+                <Redirect to="/group" />
               </Route>
-              <Route path="/dashboard/:id?">
+              <Route path="/group/:id?">
                 <Dashboard />
               </Route>
             </Switch>
