@@ -18,7 +18,7 @@ const StudentsList = () => {
 
   useEffect(() => {
     (async () => {
-      const students = await getStudents();
+      const students = await getStudents(id);
       setStudents(students);
     })();
   }, [getStudents, id]);
