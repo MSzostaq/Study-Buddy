@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { useStudents } from "hooks/useStudents";
 import styled from "styled-components";
 import Title from "components/atoms/Title";
 import ViewWrapper from "components/molecules/ViewWrapper";
-import UsersList from "components/organisms/UsersList";
+import StudentsList from "components/organisms/StudentsList";
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,8 +42,16 @@ const GroupWrapper = styled(ViewWrapper)`
 `;
 
 const Dashboard = () => {
-  const { groups } = useStudents();
+  const [groups, setGroups] = useState([]);
+  const { getGroups } = useStudents();
   const { id } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      const groups = await getGroups();
+      setGroups(groups);
+    })();
+  }, [getGroups]);
 
   if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
 
@@ -60,7 +68,7 @@ const Dashboard = () => {
         </nav>
       </TitleWrapper>
       <GroupWrapper>
-        <UsersList />
+        <StudentsList />
       </GroupWrapper>
     </Wrapper>
   );

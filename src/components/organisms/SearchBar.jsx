@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import debounce from "lodash.debounce";
 import styled from "styled-components";
+import { useCombobox } from "downshift";
 import { useStudents } from "hooks/useStudents";
 import Input from "components/atoms/Input";
 
@@ -39,6 +40,7 @@ const SearchWrapper = styled.div`
 const SearchResults = styled.ul`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -47,42 +49,50 @@ const SearchResults = styled.ul`
   position: absolute;
   left: 0;
   top: 30px;
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
   z-index: 1000;
   max-height: 500px;
   width: 100%;
+`;
 
-  li {
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.darkGrey};
-    font-weight: bold;
-    padding: 20px 5px;
-    width: 100%;
-  }
+const SearchResultsItem = styled.li`
+  background-color: ${({ theme, isHighlited }) =>
+    isHighlited ? theme.colors.lightPurple : theme.colors.white};
+  color: ${({ theme }) => theme.colors.darkGrey};
+  font-weight: bold;
+  padding: 20px 5px;
+  width: 100%;
 
-  li:hover,
-  li:focus {
+  &:hover {
     background-color: ${({ theme }) => theme.colors.lightPurple};
   }
 
-  li:not(:last-child) {
+  &:not(:last-child) {
     border-bottom: 1px solid ${({ theme }) => theme.colors.darkPurple};
   }
 `;
 
 const SearchBar = () => {
-  const [searchPhrase, setSearchPhrase] = useState("");
-  const [matchingStudents, setMatchingStudents] = useState("");
+  const [matchingStudents, setMatchingStudents] = useState([]);
   const { findStudents } = useStudents();
 
-  const getMatchingStudents = debounce(async (e) => {
-    const { students } = await findStudents(searchPhrase);
+  const getMatchingStudents = debounce(async ({ inputValue }) => {
+    const { students } = await findStudents(inputValue);
     setMatchingStudents(students);
   }, 500);
 
-  useEffect(() => {
-    if (!searchPhrase) return;
-    getMatchingStudents(searchPhrase);
-  }, [searchPhrase, getMatchingStudents]);
+  const {
+    isOpen,
+    getMenuProps,
+    getInputProps,
+    getComboboxProps,
+    highlightedIndex,
+    getItemProps,
+  } = useCombobox({
+    items: matchingStudents,
+    onInputValueChange: getMatchingStudents,
+  });
+
   return (
     <SearchBarWrapper>
       <StatusInfo>
@@ -91,20 +101,28 @@ const SearchBar = () => {
           <strong>Teacher</strong>
         </p>
       </StatusInfo>
-      <SearchWrapper>
+      <SearchWrapper {...getComboboxProps()}>
         <Input
-          onChange={(e) => setSearchPhrase(e.target.value)}
-          value={searchPhrase}
+          {...getInputProps()}
           name="Search"
           id="Search"
+          placeholder="Search"
         />
-        {searchPhrase && matchingStudents.length ? (
-          <SearchResults>
-            {matchingStudents.map((student) => (
-              <li key={student.id}>{student.map}</li>
+        <SearchResults
+          isVisible={isOpen && matchingStudents.length > 0}
+          {...getMenuProps()}
+        >
+          {isOpen &&
+            matchingStudents.map((item, index) => (
+              <SearchResultsItem
+                isHighlited={highlightedIndex === index}
+                {...getItemProps({ item, index })}
+                key={item.id}
+              >
+                {item.map}
+              </SearchResultsItem>
             ))}
-          </SearchResults>
-        ) : null}
+        </SearchResults>
       </SearchWrapper>
     </SearchBarWrapper>
   );

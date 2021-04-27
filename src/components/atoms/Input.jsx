@@ -5,10 +5,10 @@ const Input = styled.input`
   border-radius: 24px;
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
   box-sizing: border-box;
-  padding: 4px 8px;
+  font-size: ${({ theme }) => theme.fontSize.l};
+  padding: 4px 12px;
 
   &:focus {
-    box-shadow: 2px 4px 1px rgba(115, 124, 142, 0.3);
     outline: none;
   }
 `;

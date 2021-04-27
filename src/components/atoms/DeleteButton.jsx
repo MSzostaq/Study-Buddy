@@ -16,7 +16,6 @@ const StyledButton = styled.button`
   height: 24px;
 
   &:focus {
-    box-shadow: 2px 4px 1px rgba(115, 124, 142, 0.3);
     outline: none;
   }
 

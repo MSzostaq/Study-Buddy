@@ -57,7 +57,9 @@ const StyledAverage = styled.div`
   height: 36px;
 `;
 
-const UsersListItem = ({ userData: { attendance = "0%", average, name } }) => {
+const StudentsListItem = ({
+  userData: { attendance = "0%", average, name },
+}) => {
   return (
     <Wrapper>
       <StyledAverage value={average}>{average}</StyledAverage>
@@ -72,8 +74,8 @@ const UsersListItem = ({ userData: { attendance = "0%", average, name } }) => {
   );
 };
 
-UsersListItem.propTypes = {
+StudentsListItem.propTypes = {
   userData: PropTypes.shape(UserShape),
 };
 
-export default UsersListItem;
+export default StudentsListItem;

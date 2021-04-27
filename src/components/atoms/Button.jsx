@@ -13,7 +13,6 @@ const Button = styled.button`
   padding: ${({ isBig }) => (isBig ? "10px 36px" : "8px 24px")};
 
   &:focus {
-    box-shadow: 2px 4px 1px rgba(115, 124, 142, 0.3);
     outline: none;
   }
 `;
