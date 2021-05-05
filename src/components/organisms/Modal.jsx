@@ -27,11 +27,10 @@ const Modal = ({ children, handleClose }) => {
 
   useEffect(() => {
     modalContainer.appendChild(modalNode);
-
     return () => {
       modalContainer.removeChild(modalNode);
     };
-  });
+  }, [modalNode]);
 
   return ReactDOM.createPortal(
     <ModalWrapper>

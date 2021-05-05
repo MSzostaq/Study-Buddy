@@ -19,13 +19,14 @@ const StyledAverage = styled.div`
   height: 36px;
 `;
 
-const StudentDetails = ({ currentStudent }) => {
+const StudentDetails = ({ student }) => {
   return (
     <div>
-      <Title>{currentStudent.name}</Title>
-      <p>{currentStudent.attendance}</p>
-      <StyledAverage value={currentStudent.average}></StyledAverage>
-      <Title>{currentStudent.name}</Title>
+      <Title>
+        {student.name} | Group {student.group}
+      </Title>
+      <p>{student.attendance}</p>
+      <StyledAverage value={student.average}>{student.average}</StyledAverage>
     </div>
   );
 };

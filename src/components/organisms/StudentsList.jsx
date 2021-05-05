@@ -29,7 +29,7 @@ const StudentsList = ({ handleOpenStudentDetails }) => {
       <StyledList>
         {students.map((userData) => (
           <StudentsListItem
-            onClick={handleOpenStudentDetails(userData.id)}
+            onClick={() => handleOpenStudentDetails(userData.id)}
             key={userData.name}
             userData={userData}
           />
