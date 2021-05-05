@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect, useParams } from "react-router-dom";
 import { useStudents } from "hooks/useStudents";
 import styled from "styled-components";
+import useModal from "hooks/useModal";
 import Title from "components/atoms/Title";
 import ViewWrapper from "components/molecules/ViewWrapper";
+import StudentDetails from "components/molecules/StudentDetails";
 import StudentsList from "components/organisms/StudentsList";
 
 const Wrapper = styled.div`
@@ -43,8 +45,10 @@ const GroupWrapper = styled(ViewWrapper)`
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
-  const { getGroups } = useStudents();
+  const [currentStudent, setCurrentStudent] = useState([]);
+  const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
+  const { handleOpenModal, handleCloseModal, isOpen, Modal } = useModal();
 
   useEffect(() => {
     (async () => {
@@ -52,6 +56,12 @@ const Dashboard = () => {
       setGroups(groups);
     })();
   }, [getGroups]);
+
+  const handleOpenStudentDetails = async (id) => {
+    const student = await getStudentById(id);
+    setCurrentStudent(student);
+    handleOpenModal();
+  };
 
   if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
 
@@ -62,13 +72,18 @@ const Dashboard = () => {
         <nav>
           {groups.map((group) => (
             <Link key={group} to={`/group/${group}`}>
-              {group}{" "}
+              {group}
             </Link>
           ))}
         </nav>
       </TitleWrapper>
       <GroupWrapper>
-        <StudentsList />
+        <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
+        {isOpen ? (
+          <Modal handleClose={handleCloseModal}>
+            <StudentDetails student={currentStudent} />
+          </Modal>
+        ) : null}
       </GroupWrapper>
     </Wrapper>
   );

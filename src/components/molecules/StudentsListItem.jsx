@@ -5,6 +5,7 @@ import { UserShape } from "types";
 import DeleteButton from "components/atoms/DeleteButton";
 
 const Wrapper = styled.li`
+  cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
@@ -59,9 +60,10 @@ const StyledAverage = styled.div`
 
 const StudentsListItem = ({
   userData: { attendance = "0%", average, name },
+  ...props
 }) => {
   return (
-    <Wrapper>
+    <Wrapper {...props}>
       <StyledAverage value={average}>{average}</StyledAverage>
       <StyledInfo>
         <p>
