@@ -6,6 +6,7 @@ import useModal from "hooks/useModal";
 import Title from "components/atoms/Title";
 import ViewWrapper from "components/molecules/ViewWrapper";
 import StudentDetails from "components/molecules/StudentDetails";
+import Modal from "components/organisms/Modal";
 import StudentsList from "components/organisms/StudentsList";
 
 const Wrapper = styled.div`
@@ -48,7 +49,7 @@ const Dashboard = () => {
   const [currentStudent, setCurrentStudent] = useState(null);
   const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
-  const { handleOpenModal, handleCloseModal, isOpen, Modal } = useModal();
+  const { handleOpenModal, handleCloseModal, isOpen } = useModal();
 
   useEffect(() => {
     (async () => {
