@@ -1,59 +1,38 @@
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+import ReactModal from "react-modal";
 import styled from "styled-components";
 import Button from "components/atoms/Button";
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled(ReactModal)`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 16px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-width: 400px;
-  min-height: 400px;
-  opacity: 1;
+  max-height: 600px;
   padding: 48px;
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 35%;
-  transition: translate(-50%, -50%);
-`;
 
-const ModalBackground = styled.div`
-  ::before {
-    content: "";
-    opacity: 0.5;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: ${({ theme }) => theme.colors.darkGrey};
+  &;focus {
+    outline: none;
   }
 `;
 
-const modalContainer = document.getElementById("modal-container");
-
-const Modal = ({ children, handleClose }) => {
-  const modalNode = document.createElement("div");
-
-  useEffect(() => {
-    modalContainer.appendChild(modalNode);
-    return () => {
-      modalContainer.removeChild(modalNode);
-    };
-  }, [modalNode]);
-
-  return ReactDOM.createPortal(
-    <ModalBackground>
-      <ModalWrapper>
-        {children}
-        <Button onClick={handleClose}>Close modal</Button>
-      </ModalWrapper>
-    </ModalBackground>,
-    modalNode
+const Modal = ({ children, handleClose, isOpen }) => {
+  return (
+    <ModalWrapper
+      appElement={document.getElementById("root")}
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+    >
+      {children}
+      <Button onClick={handleClose}>Close</Button>
+    </ModalWrapper>
   );
 };
 
