@@ -13,11 +13,25 @@ const ModalWrapper = styled.div`
   justify-content: space-between;
   min-width: 400px;
   min-height: 400px;
+  opacity: 1;
   padding: 48px;
   position: absolute;
   top: 20%;
   left: 35%;
   transition: translate(-50%, -50%);
+`;
+
+const ModalBackground = styled.div`
+  ::before {
+    content: "";
+    opacity: 0.5;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: ${({ theme }) => theme.colors.darkGrey};
+  }
 `;
 
 const modalContainer = document.getElementById("modal-container");
@@ -33,10 +47,12 @@ const Modal = ({ children, handleClose }) => {
   }, [modalNode]);
 
   return ReactDOM.createPortal(
-    <ModalWrapper>
-      {children}
-      <Button onClick={handleClose}>Close modal</Button>
-    </ModalWrapper>,
+    <ModalBackground>
+      <ModalWrapper>
+        {children}
+        <Button onClick={handleClose}>Close modal</Button>
+      </ModalWrapper>
+    </ModalBackground>,
     modalNode
   );
 };

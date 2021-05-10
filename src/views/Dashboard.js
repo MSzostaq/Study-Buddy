@@ -45,7 +45,7 @@ const GroupWrapper = styled(ViewWrapper)`
 
 const Dashboard = () => {
   const [groups, setGroups] = useState([]);
-  const [currentStudent, setCurrentStudent] = useState([]);
+  const [currentStudent, setCurrentStudent] = useState(null);
   const { getGroups, getStudentById } = useStudents();
   const { id } = useParams();
   const { handleOpenModal, handleCloseModal, isOpen, Modal } = useModal();

@@ -5,7 +5,7 @@ export const theme = {
     darkPurple: "#c0c7d6",
     error: "#cb8581",
     grey: "#c0c7d6",
-    lightGrey: "#e0e0e0",
+    lightGrey: "#f7f8fa",
     lightPurple: "#eceff7",
     succes: "#8fcb81",
     warning: "#e1d888",
