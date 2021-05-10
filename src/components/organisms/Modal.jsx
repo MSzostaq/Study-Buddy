@@ -18,7 +18,7 @@ const ModalWrapper = styled(ReactModal)`
   top: 10%;
   left: 35%;
 
-  &;focus {
+  &:focus {
     outline: none;
   }
 `;
