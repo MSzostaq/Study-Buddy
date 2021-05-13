@@ -72,8 +72,9 @@ const Navigation = () => {
           Buddy
         </h1>
       </Logo>
-      <StyledLink exact to="/group">
-        Dashboard
+      <StyledLink to="/group">Dashboard</StyledLink>
+      <StyledLink as="a" onClick={() => localStorage.removeItem("token")}>
+        Logout
       </StyledLink>
     </Wrapper>
   );
