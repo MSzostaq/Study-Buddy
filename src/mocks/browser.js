@@ -15,17 +15,19 @@ const seed = () => {
     id: "C",
   });
 
+  db.teacher.create();
+
   for (let i = 0; i < 15; i++) {
-    db.event.create();
     db.student.create();
+    db.event.create();
   }
 };
 
 seed();
 
 window.mocks = {
+  seed,
+  getStudents: () => db.student.getAll(),
   getEvents: () => db.event.getAll(),
   getGroups: () => db.group.getAll(),
-  getStudents: () => db.student.getAll(),
-  seed,
 };
