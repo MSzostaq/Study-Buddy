@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "hooks/useAuth";
 
 const Wrapper = styled.nav`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
@@ -36,6 +37,7 @@ const StyledLink = styled(NavLink).attrs({
   activeClassName,
 })`
   color: ${({ theme }) => theme.colors.darkGrey};
+  cursor: pointer;
   font-weight: bold;
   margin: 16px 20px 16px auto;
   position: relative;
@@ -63,6 +65,8 @@ const StyledLink = styled(NavLink).attrs({
 `;
 
 const Navigation = () => {
+  const auth = useAuth();
+
   return (
     <Wrapper>
       <Logo>
@@ -73,7 +77,7 @@ const Navigation = () => {
         </h1>
       </Logo>
       <StyledLink to="/group">Dashboard</StyledLink>
-      <StyledLink as="a" onClick={() => localStorage.removeItem("token")}>
+      <StyledLink as="a" onClick={auth.signOut}>
         Logout
       </StyledLink>
     </Wrapper>
