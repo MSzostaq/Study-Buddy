@@ -3,7 +3,7 @@ export const theme = {
     black: "#111111",
     darkGrey: "#737c8e",
     darkPurple: "#c0c7d6",
-    error: "#cb8581",
+    error: "#ff8383",
     grey: "#c0c7d6",
     lightGrey: "#f7f8fa",
     lightPurple: "#eceff7",

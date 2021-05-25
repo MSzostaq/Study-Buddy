@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useAuth } from "hooks/useAuth";
+import { useError } from "hooks/useError";
 import Button from "components/atoms/Button";
+import ErrorMessage from "components/molecules/ErrorMessage";
 import FormField from "components/molecules/FormField";
 import MainTemplate from "components/templates/MainTemplate";
 import Dashboard from "views/Dashboard";
@@ -75,8 +77,14 @@ const UnauthenticatedApp = () => {
 
 const Root = () => {
   const auth = useAuth();
+  const { error } = useError();
 
-  return auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  return (
+    <>
+      {error ? <ErrorMessage /> : null}
+      {auth.user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </>
+  );
 };
 
 export default Root;
