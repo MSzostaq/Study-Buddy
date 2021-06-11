@@ -6,8 +6,8 @@ import { useAuth } from "hooks/useAuth";
 const Wrapper = styled.nav`
   border-right: 1px solid ${({ theme }) => theme.colors.darkPurple};
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
+  justify-content: flex-start;
   grid-row: 1 / 3;
   grid-column: 1 / 1;
   padding: 32px 0;
