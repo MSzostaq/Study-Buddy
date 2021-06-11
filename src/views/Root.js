@@ -1,9 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import styled from "styled-components";
 import { useAuth } from "hooks/useAuth";
 import { useError } from "hooks/useError";
+import { useForm } from "react-hook-form";
 import Button from "components/atoms/Button";
 import ErrorMessage from "components/molecules/ErrorMessage";
 import FormField from "components/molecules/FormField";
@@ -37,7 +37,6 @@ const AuthenticatedApp = () => {
 
 const UnauthenticatedApp = () => {
   const auth = useAuth();
-
   const {
     register,
     handleSubmit,
