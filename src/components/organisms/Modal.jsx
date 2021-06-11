@@ -8,15 +8,15 @@ const ModalWrapper = styled(ReactModal)`
   border-radius: 16px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
-  min-width: 400px;
-  max-height: 600px;
   padding: 48px;
   position: absolute;
   top: 10%;
   left: 35%;
+  min-width: 400px;
+  max-height: 600px;
 
   &:focus {
     outline: none;
