@@ -10,6 +10,7 @@ studentsAPI.interceptors.request.use(
     if (token) {
       config.headers.authorization = `Bearer ${token}`;
     }
+
     return config;
   },
   (error) => {
@@ -57,9 +58,9 @@ export const useStudents = () => {
   };
 
   return {
-    findStudents,
     getGroups,
     getStudentsByGroup,
+    findStudents,
     getStudentById,
   };
 };

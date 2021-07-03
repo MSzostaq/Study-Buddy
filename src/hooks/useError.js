@@ -8,7 +8,7 @@ export const ErrorProvider = ({ children }) => {
   const dispatchError = useCallback((message) => {
     setError(message);
     setTimeout(() => {
-      setError();
+      setError("");
     }, 7000);
   }, []);
 

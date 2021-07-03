@@ -57,5 +57,6 @@ export const useAuth = () => {
   if (!auth) {
     throw Error("useAuth needs to be used inside AuthContext");
   }
+
   return auth;
 };
