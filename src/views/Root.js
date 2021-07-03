@@ -47,11 +47,11 @@ const UnauthenticatedApp = () => {
     <form
       onSubmit={handleSubmit(auth.signIn)}
       style={{
-        height: "100vh",
         display: "flex",
-        justifyContent: "center",
         alignItems: "center",
+        justifyContent: "center",
         flexDirection: "column",
+        height: "100vh",
       }}
     >
       <FormField
