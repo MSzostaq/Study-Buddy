@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Navigation from "components/organisms/Navigation";
 import SearchBar from "components/organisms/SearchBar";
 import NewsSection from "components/templates/NewsSection";
+import NotesWidget from "components/organisms/NotesWidget";
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGrey};
@@ -22,6 +23,7 @@ const MainTemplate = ({ children }) => {
       <SearchBar />
       {children}
       <NewsSection />
+      <NotesWidget />
     </Wrapper>
   );
 };
