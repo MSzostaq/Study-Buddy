@@ -9,6 +9,7 @@ import ErrorMessage from "components/molecules/ErrorMessage";
 import FormField from "components/molecules/FormField";
 import MainTemplate from "components/templates/MainTemplate";
 import Dashboard from "views/Dashboard";
+import Notes from "views/Notes";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,6 +29,9 @@ const AuthenticatedApp = () => {
           </Route>
           <Route path="/group/:id?">
             <Dashboard />
+          </Route>
+          <Route path="/notes">
+            <Notes />
           </Route>
         </Switch>
       </Wrapper>
