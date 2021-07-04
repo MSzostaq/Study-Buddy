@@ -10,25 +10,42 @@ const Wrapper = styled.div`
   align-items: flex-start;
 
   ${Label} {
-    margin: 12px 0;
+    margin: 8px 0;
   }
 `;
 
 const FormField = React.forwardRef(
-  ({ id, label, name, onChange, type = "text", value, ...props }, ref) => {
+  (
+    { id, label, name, onChange, type = "text", value, isTextarea, ...props },
+    ref
+  ) => {
     return (
       <Wrapper>
         <Label htmlFor={id}>{label}</Label>
-        <Input
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          onChange={onChange}
-          data-testid={label}
-          {...props}
-          ref={ref}
-        />
+        {isTextarea ? (
+          <Input
+            isTextarea
+            as="textarea"
+            id={id}
+            name={name}
+            value={value}
+            onChange={onChange}
+            data-testid={label}
+            {...props}
+            ref={ref}
+          />
+        ) : (
+          <Input
+            id={id}
+            name={name}
+            type={type}
+            value={value}
+            onChange={onChange}
+            data-testid={label}
+            {...props}
+            ref={ref}
+          />
+        )}
       </Wrapper>
     );
   }
