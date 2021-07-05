@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { addNote } from "store";
 import Button from "components/atoms/Button";
 import FormField from "components/molecules/FormField";
+import Note from "components/molecules/Note";
 
 const Wrapper = styled.div`
   display: grid;
@@ -35,19 +38,39 @@ const NotesWrapper = styled.div`
 `;
 
 const Notes = () => {
+  const notes = useSelector((state) => state.notes);
+  const dispatch = useDispatch();
+
+  const handleAddNote = () => {
+    dispatch(
+      addNote({
+        title: `New Note ${Math.floor(Math.random() * 10)}`,
+        content: "Lorem ipsum dolor sit amet",
+      })
+    );
+  };
+
   return (
     <Wrapper>
       <FormWrapper>
         <StyledFormField id="title" label="Title" name="title" />
         <StyledFormField
-          id="content"
           isTextarea
+          id="content"
           label="Content"
           name="content"
         />
-        <Button>Add</Button>
+        <Button onClick={handleAddNote}>Add</Button>
       </FormWrapper>
-      <NotesWrapper></NotesWrapper>
+      <NotesWrapper>
+        {notes.length ? (
+          notes.map(({ id, content, title }) => (
+            <Note id={id} key={id} content={content} title={title} />
+          ))
+        ) : (
+          <p>Create your first note</p>
+        )}
+      </NotesWrapper>
     </Wrapper>
   );
 };
