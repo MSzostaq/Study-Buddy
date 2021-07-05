@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { removeNote } from "store";
 import DeleteButton from "components/atoms/DeleteButton";
 import Title from "components/atoms/Title";
 
@@ -21,12 +23,18 @@ const StyledDeleteButton = styled(DeleteButton)`
   left: -40px;
 `;
 
-const Note = () => {
+const Note = ({ id, content = "No content", title = "Untitled" }) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveNote = () => {
+    dispatch(removeNote({ id: id }));
+  };
+
   return (
     <NoteWrapper>
-      <Title></Title>
-      <p></p>
-      <StyledDeleteButton />
+      <Title>{title}</Title>
+      <p>{content}</p>
+      <StyledDeleteButton onClick={handleRemoveNote} />
     </NoteWrapper>
   );
 };
