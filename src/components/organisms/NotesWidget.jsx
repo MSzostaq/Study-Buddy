@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Note from "components/molecules/Note";
 
 const Wrapper = styled.div`
@@ -39,13 +40,22 @@ const NotesWrapper = styled.div`
 
 const NotesWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const notes = useSelector((state) => state.notes);
 
   const handleToggleWidget = () => setIsOpen((prevState) => !prevState);
 
   return (
     <Wrapper isOpen={isOpen}>
       <WidgetHandler onClick={handleToggleWidget}>notes</WidgetHandler>
-      <NotesWrapper></NotesWrapper>
+      <NotesWrapper>
+        {notes.length ? (
+          notes.map(({ id, content, title }) => (
+            <Note id={id} key={id} content={content} title={title} />
+          ))
+        ) : (
+          <p>Create your first note</p>
+        )}
+      </NotesWrapper>
     </Wrapper>
   );
 };
