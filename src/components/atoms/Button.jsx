@@ -4,6 +4,7 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.lightPurple};
   border: none;
   border-radius: 24px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
   color: ${({ theme }) => theme.colors.darkGrey};
   cursor: pointer;
   font-size: ${({ isBig, theme: { fontSize } }) =>
