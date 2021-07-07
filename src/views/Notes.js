@@ -9,26 +9,29 @@ import Note from "components/molecules/Note";
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;
-  grid-gap: 28px;
+  grid-gap: 12px;
   padding: 28px;
   width: 100%;
   height: 100%;
 `;
 
 const FormWrapper = styled.div`
-  background: ${({ theme }) => theme.colors.white};
-  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
   padding: 36px;
   width: 100%;
-  height: 80%;
+  height: 100%;
 `;
 
 const StyledFormField = styled(FormField)`
   height: ${({ isTextarea }) => (isTextarea ? "280px" : "unset")};
+`;
+
+const StyledButton = styled(Button)`
+  height: 32px;
+  width: 120px;
 `;
 
 const NotesWrapper = styled.div`
@@ -60,7 +63,7 @@ const Notes = () => {
           label="Content"
           name="content"
         />
-        <Button onClick={handleAddNote}>Add</Button>
+        <StyledButton onClick={handleAddNote}>Add</StyledButton>
       </FormWrapper>
       <NotesWrapper>
         {notes.length ? (
