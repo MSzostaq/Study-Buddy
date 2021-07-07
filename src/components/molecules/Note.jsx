@@ -20,7 +20,7 @@ const NoteWrapper = styled.div`
 const StyledDeleteButton = styled(DeleteButton)`
   posotion: absolute;
   top: 18px;
-  left: -40px;
+  left: 0;
 `;
 
 const Note = ({ id, content = "No content", title = "Untitled" }) => {
