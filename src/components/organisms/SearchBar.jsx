@@ -40,7 +40,7 @@ const SearchWrapper = styled.div`
 const SearchResults = styled.ul`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   list-style: none;

@@ -6,7 +6,7 @@ import Button from "components/atoms/Button";
 const ModalWrapper = styled(ReactModal)`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 16px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   flex-direction: column;

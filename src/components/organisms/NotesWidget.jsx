@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   position: absolute;
   top: 40px;
   right: 0;
-  transform: ${({ isOpen }) => (isOpen ? "translateX(0)" : "translateX(400px)")}
+  transform: ${({ isOpen }) =>
+    isOpen ? "translateX(0)" : "translateX(400px)"};
   transition: transform 0.6s ease-in-out;
   width: 400px;
   height: auto;
