@@ -51,7 +51,7 @@ const NotesWidget = () => {
       <NotesWrapper>
         {notes.length ? (
           notes.map(({ id, content, title }) => (
-            <Note id={id} key={id} content={content} title={title} />
+            <Note id={id} key={id} title={title} content={content} />
           ))
         ) : (
           <p>Create your first note</p>
