@@ -1,54 +1,34 @@
-import { createStore } from "redux";
 import { v4 as uuid } from "uuid";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-// actions
-export const addNote = (payload) => {
-  return {
-    type: "ADD_NOTE",
-    payload: {
-      id: uuid(),
-      ...payload,
+const initialNotesState = [
+  {
+    id: uuid(),
+    title: "Lorem ipsum",
+    content: "Lorem ipsum dolor sit amet",
+  },
+];
+
+const notesSlice = createSlice({
+  name: "notes",
+  initialState: initialNotesState,
+  reducers: {
+    addNote(state, action) {
+      state.push({
+        id: uuid(),
+        ...action.payload,
+      });
     },
-  };
-};
-
-export const removeNote = (payload) => {
-  return {
-    type: "REMOVE_NOTE",
-    payload,
-  };
-};
-
-// reducer + initialState
-const initialState = {
-  notes: [
-    {
-      id: uuid(),
-      title: "Lorem ipsum",
-      content: "Lorem ipsum dolor sit amet",
+    removeNote(state, action) {
+      return state.filter((note) => note.id !== action.payload.id);
     },
-  ],
-};
+  },
+});
 
-const notesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_NOTE":
-      return {
-        ...state,
-        notes: [...state.notes, action.payload],
-      };
-    case "REMOVE_NOTE":
-      return {
-        ...state,
-        notes: state.notes.filter((note) => note.id !== action.payload.id),
-      };
-    default:
-      return state;
-  }
-};
+export const { addNote, removeNote } = notesSlice.actions;
 
-// store
-export const store = createStore(
-  notesReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const store = configureStore({
+  reducer: {
+    notes: notesSlice.reducer,
+  },
+});
