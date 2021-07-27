@@ -11,3 +11,8 @@ export const Default = Template.bind({});
 Default.args = {
   label: "Login",
 };
+
+export const LongLabel = Template.bind({});
+Default.args = {
+  label: "Very long label to see how it looks.",
+};
