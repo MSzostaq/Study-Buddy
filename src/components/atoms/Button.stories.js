@@ -8,9 +8,6 @@ export default {
 const Template = (args) => <Button {...args}>Read more</Button>;
 
 export const Default = Template.bind({});
-Default.args = {
-  isBig: false,
-};
 
 export const Big = Template.bind({});
 Big.args = {
