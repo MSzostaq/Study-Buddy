@@ -1,5 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/atoms/Button";
 
@@ -11,6 +12,7 @@ const ModalWrapper = styled(ReactModal)`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  opacity: 1;
   padding: 48px;
   position: absolute;
   top: 10%;
@@ -34,6 +36,12 @@ const Modal = ({ children, handleClose, isOpen }) => {
       <Button onClick={handleClose}>Close</Button>
     </ModalWrapper>
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.element,
+  handleClose: PropTypes.func,
+  isOpen: PropTypes.bool,
 };
 
 export default Modal;
