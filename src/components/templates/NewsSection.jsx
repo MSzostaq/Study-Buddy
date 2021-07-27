@@ -25,6 +25,8 @@ const ArticleWrapper = styled(ViewWrapper)`
   border-radius: 12px;
   color: ${({ theme }) => theme.colors.darkGrey};
   margin: 16px 0;
+  width: 100%;
+  max-width: unset;
 
   p {
     line-height: 1.6;
@@ -39,6 +41,7 @@ const TitleWrapper = styled.div`
 
   p {
     font-size: ${({ theme }) => theme.fontSize.m};
+    margin: 0;
   }
 `;
 
