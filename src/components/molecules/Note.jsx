@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { removeNote } from "store";
+import { useRemoveNoteMutation } from "store";
 import DeleteButton from "components/atoms/DeleteButton";
 import Title from "components/atoms/Title";
 
@@ -24,10 +24,10 @@ const StyledDeleteButton = styled(DeleteButton)`
 `;
 
 const Note = ({ id, content = "No content", title = "Untitled" }) => {
-  const dispatch = useDispatch();
+  const [removeNote] = useRemoveNoteMutation();
 
   const handleRemoveNote = () => {
-    dispatch(removeNote({ id: id }));
+    removeNote({ id: id });
   };
 
   return (
