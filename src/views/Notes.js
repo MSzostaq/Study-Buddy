@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { addNote } from "store";
+import { useAddNoteMutation, useGetNotesQuery } from "store";
 import { useForm } from "react-hook-form";
 import Button from "components/atoms/Button";
 import FormField from "components/molecules/FormField";
@@ -31,11 +30,6 @@ const StyledFormField = styled(FormField)`
   height: ${({ isTextarea }) => (isTextarea ? "280px" : "unset")};
 `;
 
-const StyledButton = styled(Button)`
-  height: 32px;
-  width: 120px;
-`;
-
 const NotesWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,21 +37,16 @@ const NotesWrapper = styled.div`
 `;
 
 const Notes = () => {
-  const notes = useSelector((state) => state.notes);
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { data, isLoading } = useGetNotesQuery();
+  const [addNote] = useAddNoteMutation();
 
   const handleAddNote = ({ title, content }) => {
-    dispatch(
-      addNote({
-        title,
-        content,
-      })
-    );
+    addNote({ title, content });
   };
 
   return (
@@ -78,17 +67,21 @@ const Notes = () => {
         />
         {errors.title && <span>Title is required</span>}
         {errors.content && <span>Content is required</span>}
-        <StyledButton type="submit">Add</StyledButton>
+        <Button type="submit">Add</Button>
       </FormWrapper>
-      <NotesWrapper>
-        {notes.length ? (
-          notes.map(({ id, content, title }) => (
-            <Note id={id} key={id} content={content} title={title} />
-          ))
-        ) : (
-          <p>Create your first note</p>
-        )}
-      </NotesWrapper>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <NotesWrapper>
+          {data.notes.length ? (
+            data.notes.map(({ id, content, title }) => (
+              <Note id={id} key={id} content={content} title={title} />
+            ))
+          ) : (
+            <p>Create your first note</p>
+          )}
+        </NotesWrapper>
+      )}
     </Wrapper>
   );
 };
