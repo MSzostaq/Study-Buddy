@@ -74,8 +74,8 @@ const Notes = () => {
       ) : (
         <NotesWrapper>
           {data.notes.length ? (
-            data.notes.map(({ id, content, title }) => (
-              <Note id={id} key={id} content={content} title={title} />
+            data.notes.map(({ id, title, content }) => (
+              <Note id={id} key={id} title={title} content={content} />
             ))
           ) : (
             <p>Create your first note</p>

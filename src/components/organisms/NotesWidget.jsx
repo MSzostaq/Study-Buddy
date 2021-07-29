@@ -53,7 +53,7 @@ const NotesWidget = () => {
       ) : (
         <NotesWrapper>
           {data.notes.length ? (
-            data.notes.map(({ id, content, title }) => (
+            data.notes.map(({ id, title, content }) => (
               <Note id={id} key={id} title={title} content={content} />
             ))
           ) : (

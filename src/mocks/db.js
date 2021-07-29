@@ -53,7 +53,7 @@ export const db = factory({
   },
   note: {
     id: primaryKey(faker.datatype.uuid),
-    title: () => "Lorem Ipsum dolor sit amet",
-    content: () => "Lorem Ipsum dolor sit amet",
+    title: () => "Lorem ipsum dolor sit amet",
+    content: () => "Lorem ipsum dolor sit amet",
   },
 });
