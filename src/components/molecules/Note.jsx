@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { useRemoveNoteMutation } from "store";
 import DeleteButton from "components/atoms/DeleteButton";
 import Title from "components/atoms/Title";
@@ -34,7 +33,7 @@ const Note = ({ id, content = "No content", title = "Untitled" }) => {
     <NoteWrapper>
       <Title>{title}</Title>
       <p>{content}</p>
-      <StyledDeleteButton onClick={handleRemoveNote} />
+      <StyledDeleteButton aria-label="Delete" onClick={handleRemoveNote} />
     </NoteWrapper>
   );
 };
